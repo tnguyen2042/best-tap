@@ -1,0 +1,1261 @@
+{
+  "updated": "2026-11-11",
+  "note": "Rates come from public card reviews and issuer announcements checked in November 2026. Points cards use a conservative default value of 1 cent per point unless a source stated otherwise. Confirm terms with the issuer.",
+  "sources": {
+    "mr-cash": {
+      "title": "MaxRewards: Best Cash Back Credit Cards",
+      "url": "https://maxrewards.com/credit-cards/best/cash-back"
+    },
+    "mr-travel": {
+      "title": "MaxRewards: Best Travel Credit Cards",
+      "url": "https://maxrewards.com/credit-cards/best/travel"
+    },
+    "mr-groc": {
+      "title": "MaxRewards: Best Groceries Credit Cards",
+      "url": "https://maxrewards.com/credit-cards/best/groceries"
+    },
+    "nw-2pct": {
+      "title": "NerdWallet: Best 2% Cash Back Cards",
+      "url": "https://www.nerdwallet.com/credit-cards/best/2-percent-cash-back"
+    },
+    "nw-cash": {
+      "title": "NerdWallet: Best Cash Back Credit Cards",
+      "url": "https://nerdwallet.com/best/credit-cards/cash-back"
+    },
+    "nw-rewards": {
+      "title": "NerdWallet: Best Rewards Credit Cards",
+      "url": "https://www.nerdwallet.com/best/credit-cards/rewards"
+    },
+    "nw-store": {
+      "title": "NerdWallet: Best Store Credit Cards",
+      "url": "https://www.nerdwallet.com/credit-cards/learn/best-store-credit-cards"
+    },
+    "cc-gen": {
+      "title": "creditcards.com: Rewards Credit Cards",
+      "url": "https://www.creditcards.com/retail-rewards"
+    },
+    "nw-csp": {
+      "title": "NerdWallet: Chase Sapphire Preferred review",
+      "url": "https://www.nerdwallet.com/card-details/card-name/Chase-Sapphire-preferred"
+    },
+    "omaat-csp": {
+      "title": "One Mile at a Time: Chase Sapphire Preferred review",
+      "url": "https://onemileatatime.com/reviews/credit-cards/chase/chase-sapphire-preferred/"
+    },
+    "nw-costco": {
+      "title": "NerdWallet: Costco Anywhere Visa review",
+      "url": "https://www.nerdwallet.com/reviews/credit-cards/costco-anywhere-visa"
+    },
+    "cc-costco": {
+      "title": "creditcards.com: Costco Anywhere Visa",
+      "url": "https://www.creditcards.com/credit-cards/costco-anywhere-visa-card-by-citi/"
+    },
+    "chase-q4": {
+      "title": "Chase: Freedom Q4 2026 categories",
+      "url": "https://media.chase.com/news/chase-freedom-2026-q4-categories"
+    },
+    "nw-disc-q4": {
+      "title": "NerdWallet: Discover Q4 2026 categories",
+      "url": "https://www.nerdwallet.com/credit-cards/news/discover-bonus-categories-q4-2026"
+    },
+    "nw-bofa": {
+      "title": "NerdWallet: Bank of America Customized Cash categories",
+      "url": "https://www.nerdwallet.com/credit-cards/news/bank-of-america-customized-cash-expands-rewards-categories"
+    },
+    "chase-sp": {
+      "title": "Chase: Sapphire Preferred (official)",
+      "url": "https://www.chase.com/sapphire-cards/personal/preferred"
+    },
+    "chase-ff": {
+      "title": "Chase: Freedom Flex vs. Freedom Unlimited (official)",
+      "url": "https://www.chase.com/personal/credit-cards/education/chase-cards/chase-freedom-flex-vs-freedom-unlimited"
+    },
+    "boa-cc": {
+      "title": "Bank of America: Customized Cash Rewards categories (official)",
+      "url": "https://www.bankofamerica.com/credit-cards/products/cash-back-credit-card/cash-back-category-choices/"
+    },
+    "citi-costco": {
+      "title": "Citi: Costco Anywhere Visa (official)",
+      "url": "https://www.citi.com/credit-cards/costco-anywhere-visa-card"
+    },
+    "citi-cash": {
+      "title": "Citi: Cash back cards (official)",
+      "url": "https://www.citi.com/credit-cards/savings-and-cash-back-credit-cards"
+    },
+    "citi-rewards": {
+      "title": "Citi: Rewards cards (official)",
+      "url": "https://www.citi.com/credit-cards/rewards-credit-cards"
+    },
+    "amex-bcp": {
+      "title": "American Express: Blue Cash Preferred (official)",
+      "url": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-preferred/"
+    },
+    "amex-bce": {
+      "title": "American Express: Blue Cash Everyday (official)",
+      "url": "https://www.americanexpress.com/us/credit-cards/card/blue-cash-everyday/"
+    },
+    "disc-cb": {
+      "title": "Discover: Cash Back (official)",
+      "url": "https://www.discover.com/credit-cards/cash-back/"
+    },
+    "ck-costco": {
+      "title": "Credit Karma: Costco Anywhere Visa review",
+      "url": "https://www.creditkarma.com/credit-cards/insights/costco-anywhere-visa-card"
+    },
+    "ck-cash": {
+      "title": "Credit Karma: Best cash back cards",
+      "url": "https://www.creditkarma.com/credit-cards/cash-back-cards"
+    }
+  },
+  "cards": [
+    {
+      "id": "wells-fargo-active-cash",
+      "name": "Wells Fargo Active Cash® Card",
+      "issuer": "Wells Fargo",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [],
+      "notes": "Flat 2% on everything, no categories or caps.",
+      "src": [
+        "mr-cash",
+        "nw-2pct",
+        "nw-cash"
+      ]
+    },
+    {
+      "id": "citi-double-cash",
+      "name": "Citi Double Cash® Card",
+      "issuer": "Citi",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        }
+      ],
+      "notes": "2% total: 1% when you buy and 1% when you pay. 5% on hotels, car rentals and attractions booked through Citi Travel.",
+      "src": [
+        "mr-cash",
+        "nw-2pct",
+        "nw-cash",
+        "nw-rewards",
+        "citi-cash"
+      ],
+      "verified": [
+        "citi-cash"
+      ]
+    },
+    {
+      "id": "capital-one-quicksilver",
+      "name": "Capital One Quicksilver Cash Rewards",
+      "issuer": "Capital One",
+      "fee": 0,
+      "type": "cash",
+      "base": 1.5,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        }
+      ],
+      "notes": "5% on hotels, vacation rentals and rental cars booked through Capital One Travel.",
+      "src": [
+        "nw-cash"
+      ]
+    },
+    {
+      "id": "chase-freedom-unlimited",
+      "name": "Chase Freedom Unlimited®",
+      "issuer": "Chase",
+      "fee": 0,
+      "type": "cash",
+      "base": 1.5,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "drugstore",
+          "rate": 3
+        }
+      ],
+      "notes": "Dining includes takeout and delivery. No caps and no activation.",
+      "src": [
+        "mr-cash",
+        "nw-cash",
+        "nw-rewards",
+        "chase-ff"
+      ],
+      "verified": [
+        "chase-ff"
+      ]
+    },
+    {
+      "id": "synchrony-premier-world-mastercard",
+      "name": "Synchrony Premier World Mastercard®",
+      "issuer": "Synchrony",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [],
+      "notes": "Flat 2% as a statement credit.",
+      "src": [
+        "nw-2pct",
+        "nw-cash"
+      ]
+    },
+    {
+      "id": "bread-cashback-amex",
+      "name": "Bread Cashback American Express",
+      "issuer": "Bread Financial",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [],
+      "notes": "Flat 2%, uncapped.",
+      "src": [
+        "nw-2pct"
+      ]
+    },
+    {
+      "id": "fidelity-rewards-visa",
+      "name": "Fidelity® Rewards Visa Signature®",
+      "issuer": "Fidelity",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [],
+      "notes": "Flat 2% when rewards go into a Fidelity account. Other redemptions are worth less.",
+      "src": [
+        "nw-2pct"
+      ]
+    },
+    {
+      "id": "apple-card",
+      "name": "Apple Card",
+      "issuer": "Goldman Sachs",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [
+        {
+          "merchant": "apple",
+          "rate": 3
+        }
+      ],
+      "notes": "2% when you pay with Apple Pay, 1% with the physical card. 3% at Apple and select merchants.",
+      "src": [
+        "nw-2pct",
+        "nw-cash"
+      ]
+    },
+    {
+      "id": "paypal-cashback-mastercard",
+      "name": "PayPal Cashback Mastercard®",
+      "issuer": "Synchrony",
+      "fee": 0,
+      "type": "cash",
+      "base": 1.5,
+      "rules": [
+        {
+          "cat": "online",
+          "rate": 3
+        }
+      ],
+      "notes": "The 3% applies only to online checkout with PayPal.",
+      "src": [
+        "nw-cash"
+      ]
+    },
+    {
+      "id": "chase-freedom-flex",
+      "name": "Chase Freedom Flex®",
+      "issuer": "Chase",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "rotating": true,
+          "rate": 5,
+          "pool": "rot",
+          "activation": true
+        },
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "drugstore",
+          "rate": 3
+        }
+      ],
+      "pools": {
+        "rot": {
+          "cap": 1500,
+          "period": "quarter"
+        }
+      },
+      "rotating": {
+        "2026Q4": [
+          "groceries",
+          "dining"
+        ]
+      },
+      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%.",
+      "src": [
+        "mr-cash",
+        "nw-cash",
+        "nw-rewards",
+        "chase-q4",
+        "chase-ff"
+      ],
+      "verified": [
+        "chase-ff"
+      ]
+    },
+    {
+      "id": "discover-it-cash-back",
+      "name": "Discover it® Cash Back",
+      "issuer": "Discover",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "rotating": true,
+          "rate": 5,
+          "pool": "rot",
+          "activation": true
+        }
+      ],
+      "pools": {
+        "rot": {
+          "cap": 1500,
+          "period": "quarter"
+        }
+      },
+      "rotating": {
+        "2026Q4": [
+          "entertainment",
+          "dining",
+          "utilities"
+        ]
+      },
+      "notes": "Q4 2026 rotating 5%: entertainment, restaurants and utilities. Activate each quarter. Discover's own pages did not show the Q4 category list when checked, so confirm in your Discover account.",
+      "src": [
+        "mr-cash",
+        "nw-cash",
+        "nw-rewards",
+        "nw-disc-q4",
+        "disc-cb"
+      ],
+      "verified": [
+        "disc-cb"
+      ]
+    },
+    {
+      "id": "capital-one-savor",
+      "name": "Capital One Savor Cash Rewards",
+      "issuer": "Capital One",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "groceries",
+          "rate": 3
+        },
+        {
+          "cat": "entertainment",
+          "rate": 3
+        },
+        {
+          "cat": "streaming",
+          "rate": 3
+        },
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        }
+      ],
+      "notes": "Groceries exclude superstores like Walmart and Target. 5% on hotels, vacation rentals and rental cars through Capital One Travel.",
+      "src": [
+        "mr-cash",
+        "mr-groc",
+        "nw-cash",
+        "nw-rewards",
+        "ck-cash"
+      ],
+      "verified": []
+    },
+    {
+      "id": "amex-blue-cash-preferred",
+      "name": "Blue Cash Preferred® Card from American Express",
+      "issuer": "American Express",
+      "fee": 95,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "cat": "groceries",
+          "rate": 6,
+          "pool": "groc"
+        },
+        {
+          "cat": "streaming",
+          "rate": 6
+        },
+        {
+          "cat": "gas",
+          "rate": 3
+        },
+        {
+          "cat": "transit",
+          "rate": 3
+        }
+      ],
+      "pools": {
+        "groc": {
+          "cap": 6000,
+          "period": "year"
+        }
+      },
+      "notes": "$0 annual fee the first year, then $95. 6% at U.S. supermarkets up to $6,000 a year, then 1%. 6% on select U.S. streaming, 3% on transit and U.S. gas stations (confirmed by American Express).",
+      "src": [
+        "mr-cash",
+        "mr-groc",
+        "nw-cash",
+        "nw-rewards",
+        "amex-bcp",
+        "ck-cash"
+      ],
+      "verified": [
+        "amex-bcp"
+      ]
+    },
+    {
+      "id": "amex-blue-cash-everyday",
+      "name": "Blue Cash Everyday® Card from American Express",
+      "issuer": "American Express",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "cat": "groceries",
+          "rate": 3,
+          "pool": "groc"
+        },
+        {
+          "cat": "gas",
+          "rate": 3,
+          "pool": "gas"
+        },
+        {
+          "cat": "online",
+          "rate": 3,
+          "pool": "online"
+        }
+      ],
+      "pools": {
+        "groc": {
+          "cap": 6000,
+          "period": "year"
+        },
+        "gas": {
+          "cap": 6000,
+          "period": "year"
+        },
+        "online": {
+          "cap": 6000,
+          "period": "year"
+        }
+      },
+      "notes": "3% at U.S. supermarkets, gas stations and U.S. online retail, each up to $6,000 a year.",
+      "src": [
+        "mr-groc",
+        "nw-cash",
+        "cc-gen",
+        "amex-bce"
+      ],
+      "verified": [
+        "amex-bce"
+      ]
+    },
+    {
+      "id": "bofa-customized-cash",
+      "name": "Bank of America® Customized Cash Rewards",
+      "issuer": "Bank of America",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "choice": "c1",
+          "rate": 3,
+          "pool": "q"
+        },
+        {
+          "cat": "groceries",
+          "rate": 2,
+          "pool": "q"
+        },
+        {
+          "cat": "wholesale",
+          "rate": 2,
+          "pool": "q"
+        }
+      ],
+      "pools": {
+        "q": {
+          "cap": 2500,
+          "period": "quarter"
+        }
+      },
+      "choices": {
+        "c1": {
+          "label": "3% category",
+          "options": [
+            "gas",
+            "online",
+            "dining",
+            "travel",
+            "drugstore",
+            "home"
+          ],
+          "default": "gas"
+        }
+      },
+      "notes": "Pick one 3% category (Bank of America sets gas and EV charging until you change it) and change it once a month. Groceries and warehouse clubs earn 2%. The choice and the 2% categories share a $2,500 quarterly cap. A higher first-year rate is not included.",
+      "src": [
+        "mr-groc",
+        "nw-cash",
+        "nw-bofa",
+        "boa-cc"
+      ],
+      "verified": [
+        "boa-cc"
+      ]
+    },
+    {
+      "id": "discover-it-student-chrome",
+      "name": "Discover it® Student Chrome",
+      "issuer": "Discover",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "cat": "gas",
+          "rate": 2,
+          "pool": "gr"
+        },
+        {
+          "cat": "dining",
+          "rate": 2,
+          "pool": "gr"
+        }
+      ],
+      "pools": {
+        "gr": {
+          "cap": 1000,
+          "period": "quarter"
+        }
+      },
+      "notes": "2% at gas stations and restaurants on up to $1,000 combined each quarter. For students.",
+      "src": [
+        "nw-rewards"
+      ]
+    },
+    {
+      "id": "chase-sapphire-preferred",
+      "name": "Chase Sapphire Preferred® Card",
+      "issuer": "Chase",
+      "fee": 95,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "groceries_online",
+          "rate": 3
+        },
+        {
+          "cat": "streaming",
+          "rate": 3
+        },
+        {
+          "cat": "gas",
+          "rate": 3
+        },
+        {
+          "cat": "travel",
+          "rate": 2
+        },
+        {
+          "cat": "transit",
+          "rate": 2
+        }
+      ],
+      "notes": "Online groceries exclude Walmart, Target and warehouse clubs. 1 cent per point is the cash value. Chase Travel redemptions can be worth more, so raise the point value if you use them that way. Chase also lists 3x at vacation-home brands like Airbnb and Vrbo, plus time-limited Peloton and Lyft offers, which the app does not model.",
+      "src": [
+        "nw-csp",
+        "omaat-csp",
+        "nw-rewards",
+        "mr-travel",
+        "chase-sp"
+      ],
+      "verified": [
+        "chase-sp"
+      ]
+    },
+    {
+      "id": "chase-sapphire-reserve",
+      "name": "Chase Sapphire Reserve®",
+      "issuer": "Chase",
+      "fee": 795,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 8
+        },
+        {
+          "cat": "flights",
+          "rate": 4
+        },
+        {
+          "cat": "hotels",
+          "rate": 4
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        }
+      ],
+      "notes": "Rates were derived from a source that listed value percentages at 1.5 cents per point. Travel booked through Chase Travel earns the top rate.",
+      "src": [
+        "mr-travel"
+      ]
+    },
+    {
+      "id": "capital-one-venture",
+      "name": "Capital One Venture Rewards",
+      "issuer": "Capital One",
+      "fee": 95,
+      "type": "points",
+      "cpp": 1,
+      "base": 2,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        }
+      ],
+      "notes": "Miles. 5x on hotels, vacation rentals and rental cars through Capital One Travel. Miles are worth 1 cent for travel redemptions.",
+      "src": [
+        "mr-travel",
+        "nw-rewards",
+        "cc-gen"
+      ]
+    },
+    {
+      "id": "capital-one-venture-x",
+      "name": "Capital One Venture X Rewards",
+      "issuer": "Capital One",
+      "fee": 395,
+      "type": "points",
+      "cpp": 1,
+      "base": 2,
+      "rules": [
+        {
+          "cat": "travel_portal",
+          "rate": 10
+        }
+      ],
+      "notes": "Miles. 10x on hotels and rental cars booked through Capital One Travel. Flights and vacation rentals earn 5x in the portal, which the app does not separate.",
+      "src": [
+        "mr-travel",
+        "cc-gen"
+      ]
+    },
+    {
+      "id": "wells-fargo-autograph",
+      "name": "Wells Fargo Autograph®",
+      "issuer": "Wells Fargo",
+      "fee": 0,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "travel",
+          "rate": 3
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "gas",
+          "rate": 3
+        },
+        {
+          "cat": "streaming",
+          "rate": 3
+        },
+        {
+          "cat": "phone",
+          "rate": 3
+        }
+      ],
+      "notes": "3x on travel, dining, gas and EV charging, streaming and phone plans.",
+      "src": [
+        "mr-travel"
+      ]
+    },
+    {
+      "id": "citi-strata-premier",
+      "name": "Citi Strata Premier®",
+      "issuer": "Citi",
+      "fee": 95,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "groceries",
+          "rate": 3
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "gas",
+          "rate": 3
+        },
+        {
+          "cat": "flights",
+          "rate": 3
+        },
+        {
+          "cat": "hotels",
+          "rate": 3
+        },
+        {
+          "cat": "travel_portal",
+          "rate": 10
+        }
+      ],
+      "notes": "10x on hotels, car rentals and attractions booked through cititravel.com. One source values ThankYou points at 1.5 cents, so raise the point value if that is how you redeem.",
+      "src": [
+        "mr-travel",
+        "mr-groc",
+        "citi-rewards"
+      ],
+      "verified": [
+        "citi-rewards"
+      ]
+    },
+    {
+      "id": "amex-gold",
+      "name": "American Express® Gold Card",
+      "issuer": "American Express",
+      "fee": 325,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "dining",
+          "rate": 4,
+          "pool": "dining"
+        },
+        {
+          "cat": "groceries",
+          "rate": 4,
+          "pool": "groc"
+        },
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        },
+        {
+          "cat": "flights",
+          "rate": 3
+        }
+      ],
+      "pools": {
+        "dining": {
+          "cap": 50000,
+          "period": "year"
+        },
+        "groc": {
+          "cap": 25000,
+          "period": "year"
+        }
+      },
+      "notes": "Membership Rewards points. 4x at restaurants worldwide and U.S. supermarkets, then 1x past the yearly caps. 5x on prepaid hotels through Amex Travel.",
+      "src": [
+        "mr-groc",
+        "cc-gen"
+      ]
+    },
+    {
+      "id": "amex-platinum",
+      "name": "American Express Platinum Card®",
+      "issuer": "American Express",
+      "fee": 895,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "flights",
+          "rate": 5,
+          "pool": "air"
+        },
+        {
+          "cat": "travel_portal",
+          "rate": 5
+        }
+      ],
+      "pools": {
+        "air": {
+          "cap": 500000,
+          "period": "year"
+        }
+      },
+      "notes": "5x on flights booked directly with airlines or through Amex Travel, and on prepaid hotels through Amex Travel. Many of its benefits need enrollment.",
+      "src": [
+        "mr-travel",
+        "cc-gen"
+      ]
+    },
+    {
+      "id": "united-explorer",
+      "name": "United℠ Explorer Card",
+      "issuer": "Chase",
+      "fee": 150,
+      "type": "points",
+      "cpp": 1.3,
+      "base": 1,
+      "rules": [
+        {
+          "merchant": "united",
+          "rate": 9
+        },
+        {
+          "cat": "dining",
+          "rate": 2
+        },
+        {
+          "cat": "hotels",
+          "rate": 2
+        }
+      ],
+      "notes": "MileagePlus miles, estimated at 1.3 cents each. $0 annual fee the first year. Hotels earn 2x when booked directly with the hotel.",
+      "src": [
+        "mr-travel",
+        "nw-rewards"
+      ]
+    },
+    {
+      "id": "southwest-priority",
+      "name": "Southwest Rapid Rewards® Priority Credit Card",
+      "issuer": "Chase",
+      "fee": 229,
+      "type": "points",
+      "cpp": 1.3,
+      "base": 1,
+      "rules": [
+        {
+          "merchant": "southwest",
+          "rate": 4
+        },
+        {
+          "cat": "dining",
+          "rate": 2
+        },
+        {
+          "cat": "gas",
+          "rate": 2
+        },
+        {
+          "cat": "hotels",
+          "rate": 2,
+          "until": "2026-12-31"
+        },
+        {
+          "cat": "streaming",
+          "rate": 2,
+          "until": "2026-12-31"
+        },
+        {
+          "cat": "transit",
+          "rate": 2,
+          "until": "2026-12-31"
+        },
+        {
+          "cat": "phone",
+          "rate": 2,
+          "until": "2026-12-31"
+        }
+      ],
+      "notes": "Points are estimated at 1.3 cents each. The hotel, streaming, transit and phone bonuses were listed through Dec 31, 2026.",
+      "src": [
+        "mr-travel"
+      ]
+    },
+    {
+      "id": "aadvantage-platinum-select",
+      "name": "Citi® / AAdvantage® Platinum Select®",
+      "issuer": "Citi",
+      "fee": 99,
+      "type": "points",
+      "cpp": 1.4,
+      "base": 1,
+      "rules": [
+        {
+          "merchant": "aa",
+          "rate": 2
+        },
+        {
+          "cat": "dining",
+          "rate": 2
+        },
+        {
+          "cat": "gas",
+          "rate": 2
+        }
+      ],
+      "notes": "AAdvantage miles, estimated at 1.4 cents each.",
+      "src": [
+        "mr-travel",
+        "citi-rewards"
+      ],
+      "verified": [
+        "citi-rewards"
+      ]
+    },
+    {
+      "id": "marriott-bonvoy-boundless",
+      "name": "Marriott Bonvoy Boundless® Credit Card",
+      "issuer": "Chase",
+      "fee": 95,
+      "type": "points",
+      "cpp": 0.7,
+      "base": 2,
+      "rules": [
+        {
+          "merchant": "marriott",
+          "rate": 17
+        },
+        {
+          "cat": "groceries",
+          "rate": 3,
+          "pool": "combo"
+        },
+        {
+          "cat": "gas",
+          "rate": 3,
+          "pool": "combo"
+        },
+        {
+          "cat": "dining",
+          "rate": 3,
+          "pool": "combo"
+        }
+      ],
+      "pools": {
+        "combo": {
+          "cap": 6000,
+          "period": "year"
+        }
+      },
+      "notes": "Bonvoy points, estimated at 0.7 cents each. 3x on the first $6,000 a year of combined grocery, gas and dining.",
+      "src": [
+        "mr-travel",
+        "nw-rewards"
+      ]
+    },
+    {
+      "id": "amazon-prime-visa",
+      "name": "Amazon Prime Visa",
+      "issuer": "Chase",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "merchant": "amazon",
+          "rate": 5
+        },
+        {
+          "merchant": "whole_foods",
+          "rate": 5
+        },
+        {
+          "cat": "dining",
+          "rate": 2
+        },
+        {
+          "cat": "gas",
+          "rate": 2
+        },
+        {
+          "cat": "transit",
+          "rate": 2
+        }
+      ],
+      "notes": "Requires an Amazon Prime membership.",
+      "src": [
+        "nw-cash",
+        "nw-store"
+      ]
+    },
+    {
+      "id": "target-circle-card",
+      "name": "Target Circle™ Credit Card",
+      "issuer": "Target",
+      "fee": 0,
+      "type": "cash",
+      "base": 0,
+      "rules": [
+        {
+          "merchant": "target",
+          "rate": 5
+        }
+      ],
+      "notes": "5% off eligible Target purchases at checkout. Earns nothing elsewhere.",
+      "src": [
+        "nw-store"
+      ]
+    },
+    {
+      "id": "walmart-onepay-cash-rewards",
+      "name": "OnePay CashRewards Card (Walmart)",
+      "issuer": "OnePay",
+      "fee": 0,
+      "type": "cash",
+      "base": 1.5,
+      "rules": [
+        {
+          "merchant": "walmart",
+          "rate": 3
+        }
+      ],
+      "notes": "3% at Walmart, or 5% with a Walmart+ membership. The app uses 3%.",
+      "src": [
+        "nw-store"
+      ]
+    },
+    {
+      "id": "lowes-mylowes-rewards",
+      "name": "MyLowe's Rewards Credit Card",
+      "issuer": "Lowe's",
+      "fee": 0,
+      "type": "cash",
+      "base": 0,
+      "rules": [
+        {
+          "merchant": "lowes",
+          "rate": 5
+        }
+      ],
+      "notes": "5% off eligible Lowe's purchases, or promotional financing instead. Earns nothing elsewhere.",
+      "src": [
+        "nw-store"
+      ]
+    },
+    {
+      "id": "costco-anywhere-visa",
+      "name": "Costco Anywhere Visa® Card by Citi",
+      "issuer": "Citi",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "merchant": "costco_gas",
+          "rate": 5,
+          "pool": "gas"
+        },
+        {
+          "cat": "gas",
+          "rate": 4,
+          "pool": "gas"
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "cat": "travel",
+          "rate": 3
+        },
+        {
+          "merchant": "costco",
+          "rate": 2
+        }
+      ],
+      "pools": {
+        "gas": {
+          "cap": 7000,
+          "period": "year"
+        }
+      },
+      "notes": "Needs a paid Costco membership. Costco gas and other gas and EV charging share one $7,000 yearly cap (confirmed on Citi and Credit Karma). Rewards arrive once a year as a certificate with your February statement.",
+      "src": [
+        "nw-costco",
+        "cc-costco",
+        "nw-store",
+        "citi-costco",
+        "ck-costco"
+      ],
+      "verified": [
+        "citi-costco"
+      ]
+    },
+    {
+      "id": "sams-club-mastercard",
+      "name": "Sam's Club® Mastercard®",
+      "issuer": "Synchrony",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "cat": "gas",
+          "rate": 5,
+          "pool": "gas"
+        },
+        {
+          "cat": "dining",
+          "rate": 3
+        },
+        {
+          "merchant": "sams",
+          "rate": 3
+        }
+      ],
+      "pools": {
+        "gas": {
+          "cap": 6000,
+          "period": "year"
+        }
+      },
+      "notes": "Needs a Sam's Club membership. 3% at Sam's Club requires Plus; Club members earn 1%. Rewards stop after $5,000 earned in a year.",
+      "src": [
+        "nw-store"
+      ]
+    },
+    {
+      "id": "verizon-visa",
+      "name": "Verizon Visa® Card",
+      "issuer": "Verizon",
+      "fee": 0,
+      "type": "cash",
+      "base": 1,
+      "rules": [
+        {
+          "cat": "groceries",
+          "rate": 4
+        },
+        {
+          "cat": "gas",
+          "rate": 4
+        },
+        {
+          "cat": "dining",
+          "rate": 4
+        },
+        {
+          "merchant": "verizon",
+          "rate": 4
+        }
+      ],
+      "notes": "Needs Verizon or Fios service. The monthly phone bill is excluded from the 4% at Verizon.",
+      "src": [
+        "nw-store"
+      ]
+    },
+    {
+      "id": "tmobile-visa",
+      "name": "T-Mobile Visa Card",
+      "issuer": "T-Mobile",
+      "fee": 0,
+      "type": "cash",
+      "base": 2,
+      "rules": [
+        {
+          "merchant": "tmobile",
+          "rate": 5
+        }
+      ],
+      "notes": "Needs an active T-Mobile postpaid plan. 5% on T-Mobile phones, devices and accessories.",
+      "src": [
+        "nw-store"
+      ]
+    },
+    {
+      "id": "att-points-plus",
+      "name": "AT&T Points Plus Card",
+      "issuer": "Citi",
+      "fee": 0,
+      "type": "points",
+      "cpp": 1,
+      "base": 1,
+      "rules": [
+        {
+          "cat": "gas",
+          "rate": 3
+        },
+        {
+          "cat": "groceries",
+          "rate": 2
+        },
+        {
+          "merchant": "att",
+          "rate": 2
+        }
+      ],
+      "notes": "ThankYou points. Gas excludes warehouse clubs. Groceries exclude superstores and warehouse clubs.",
+      "src": [
+        "nw-store",
+        "citi-rewards"
+      ],
+      "verified": [
+        "citi-rewards"
+      ]
+    }
+  ]
+}
