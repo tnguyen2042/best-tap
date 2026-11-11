@@ -1,5 +1,6 @@
 // Nearby places from OpenStreetMap (free, no key) plus merchant and category detection.
 import { emojiFor } from './emoji';
+import { osmAddress } from './maps';
 
 // [name pattern, category, merchant key, optional note]
 const BRANDS = [
@@ -106,7 +107,7 @@ export function parseElements(elements, lat, lon) {
     const dist = distanceMeters(lat, lon, plat, plon);
     const key = tags.name.toLowerCase() + '|' + c.cat;
     const emoji = emojiFor(tags.name + ' ' + (tags.cuisine || ''), c.cat, [tags.amenity, tags.shop].filter(Boolean));
-    const place = { id: String(el.type) + el.id, name: tags.name, cat: c.cat, merchant: c.merchant, note: c.note, emoji, dist };
+    const place = { id: String(el.type) + el.id, name: tags.name, cat: c.cat, merchant: c.merchant, note: c.note, emoji, dist, address: osmAddress(tags), lat: plat, lon: plon };
     if (!seen.has(key) || seen.get(key).dist > dist) seen.set(key, place);
   }
   return Array.from(seen.values()).sort((a, b) => a.dist - b.dist).slice(0, 40);

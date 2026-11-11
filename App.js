@@ -3,6 +3,7 @@ import {
   ActivityIndicator,
   FlatList,
   Image,
+  Linking,
   Modal,
   Pressable,
   RefreshControl,
@@ -11,6 +12,7 @@ import {
   Switch,
   Text,
   TextInput,
+  Platform,
   View,
   useColorScheme,
 } from 'react-native';
@@ -38,6 +40,7 @@ import {
   spentFor,
 } from './src/engine';
 import { classify, formatDistance } from './src/places';
+import { mapsUrl } from './src/maps';
 import { CHIPS, hasGoogleKey, loadPlaces } from './src/google';
 import { CAT_EMOJI, MERCHANT_EMOJI } from './src/emoji';
 import { activeDeals, dealWhen } from './src/deals';
@@ -124,6 +127,7 @@ function makeStyles(t) {
     pctPill: { backgroundColor: t.lime, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 },
     pctText: { fontSize: 22, fontWeight: '800', color: t.limeInk },
     useBox: { flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: t.surface2, borderRadius: 14, paddingVertical: 9, paddingHorizontal: 12 },
+    addr: { color: t.accentText, fontSize: 13, fontWeight: '600', marginTop: 3 },
     useText: { flex: 1, fontSize: 14, color: t.fg },
     rank: { gap: 10 },
     rankRow: { flexDirection: 'row', alignItems: 'center', gap: 10 },
@@ -375,6 +379,14 @@ function NearbyTab({ wallet, settings, s, t, dark, onGoWallet }) {
               <View style={{ flex: 1 }}>
                 <Text style={s.placeName}>{p.name}</Text>
                 <Text style={s.small}>{CATEGORIES[p.cat].label} · {formatDistance(p.dist, settings.units)}</Text>
+                <Pressable
+                  onPress={() => Linking.openURL(mapsUrl(p, Platform.OS)).catch(() => {})}
+                  hitSlop={8}
+                  accessibilityRole="link"
+                  accessibilityLabel={'Open ' + p.name + ' in Maps'}
+                >
+                  <Text style={s.addr} numberOfLines={2}>📍 {p.address || 'Open in Maps'} ↗</Text>
+                </Pressable>
               </View>
               {top ? <View style={s.pctPill}><Text style={s.pctText}>{pct(top.e.eff)}</Text></View> : null}
             </View>

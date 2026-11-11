@@ -5,6 +5,7 @@ import { CATEGORIES, MERCHANTS, evaluate, rankWallet, newInstance, setSpent, hig
 import { classify, parseElements, formatDistance } from '../src/places.js';
 import { mapPlace, nearbyBody, textBody, loadPlaces, CHIPS } from '../src/google.js';
 import { emojiFor, CAT_EMOJI } from '../src/emoji.js';
+import { mapsUrl, osmAddress } from '../src/maps.js';
 import { activeDeals, dealWhen } from '../src/deals.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/catalog.json', import.meta.url), 'utf8'));
@@ -314,6 +315,19 @@ test('catalog deals are well formed and merchants referenced exist', () => {
     for (const d of c.deals || []) assert.ok(d.emoji && d.text, c.id + ' deal needs emoji and text');
     for (const r of c.rules) if (r.merchant) assert.ok(MERCHANTS[r.merchant], c.id + ' unknown merchant ' + r.merchant);
   }
+});
+
+test('addresses and map links', () => {
+  const g = mapPlace({ ...G('Joe Pizza', ['restaurant']), shortFormattedAddress: '12 Main St, Springfield' }, 37, -122);
+  assert.equal(g.address, '12 Main St, Springfield');
+  assert.equal(g.lat, 37.001);
+  assert.equal(mapPlace(G('Joe Pizza', ['restaurant']), 37, -122).address, '');
+  assert.equal(osmAddress({ 'addr:housenumber': '12', 'addr:street': 'Main St', 'addr:city': 'Springfield' }), '12 Main St, Springfield');
+  assert.equal(osmAddress({}), '');
+  const url = mapsUrl({ name: "Joe's Pizza", lat: 37.5, lon: -122.25 }, 'ios');
+  assert.equal(url, 'https://maps.apple.com/?q=Joe\'s%20Pizza&ll=37.5,-122.25');
+  assert.equal(mapsUrl({ name: 'Shell', lat: 1, lon: 2 }, 'android'), 'geo:1,2?q=1,2(Shell)');
+  assert.match(mapsUrl({ name: 'Shell', address: '5 Oak Ave' }, 'ios'), /q=Shell%205%20Oak%20Ave$/);
 });
 
 await Promise.all(pending);

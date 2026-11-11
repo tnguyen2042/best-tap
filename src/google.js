@@ -3,7 +3,7 @@ import { classify, distanceMeters, findNearby } from './places';
 import { emojiFor } from './emoji';
 
 const BASE = 'https://places.googleapis.com/v1/places';
-const FIELDS = 'places.id,places.displayName,places.location,places.primaryType,places.types';
+const FIELDS = 'places.id,places.displayName,places.location,places.primaryType,places.types,places.shortFormattedAddress,places.formattedAddress';
 
 export const getKey = () => process.env.EXPO_PUBLIC_GOOGLE_PLACES_KEY || '';
 export const hasGoogleKey = () => !!getKey();
@@ -56,7 +56,8 @@ export function mapPlace(g, lat, lon) {
   if (merchant && brand.known && !typeCategory(types)) cat = brand.cat;
   const loc = g.location || {};
   const dist = loc.latitude != null ? distanceMeters(lat, lon, loc.latitude, loc.longitude) : 0;
-  return { id: g.id, name, cat, merchant, note: brand.note || '', emoji: emojiFor(name, cat, types), dist };
+  const address = g.shortFormattedAddress || g.formattedAddress || '';
+  return { id: g.id, name, cat, merchant, note: brand.note || '', emoji: emojiFor(name, cat, types), dist, address, lat: loc.latitude != null ? loc.latitude : null, lon: loc.longitude != null ? loc.longitude : null };
 }
 
 async function call(endpoint, body) {
