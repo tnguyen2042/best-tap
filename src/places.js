@@ -85,11 +85,11 @@ const ENDPOINTS = ['https://overpass-api.de/api/interpreter', 'https://overpass.
 
 export function buildQuery(lat, lon, radius) {
   const around = `(around:${radius},${lat},${lon})`;
-  return `[out:json][timeout:15];(
+  return `[out:json][timeout:25];(
 nwr${around}["name"]["amenity"~"^(restaurant|fast_food|cafe|bar|pub|food_court|ice_cream|fuel|charging_station|pharmacy|cinema|theatre)$"];
 nwr${around}["name"]["shop"~"^(supermarket|greengrocer|wholesale|doityourself|hardware|department_store|variety_store|chemist|convenience|mall|electronics|clothes)$"];
 nwr${around}["name"]["tourism"~"^(hotel|motel)$"];
-);out center 120;`;
+);out center 600;`;
 }
 
 export function parseElements(elements, lat, lon) {
@@ -105,15 +105,15 @@ export function parseElements(elements, lat, lon) {
     const place = { id: String(el.type) + el.id, name: tags.name, cat: c.cat, merchant: c.merchant, note: c.note, dist };
     if (!seen.has(key) || seen.get(key).dist > dist) seen.set(key, place);
   }
-  return Array.from(seen.values()).sort((a, b) => a.dist - b.dist).slice(0, 30);
+  return Array.from(seen.values()).sort((a, b) => a.dist - b.dist).slice(0, 40);
 }
 
-export async function findNearby(lat, lon, radius = 400) {
+export async function findNearby(lat, lon, radius = 3219) {
   const body = 'data=' + encodeURIComponent(buildQuery(lat, lon, radius));
   let lastErr = null;
   for (const url of ENDPOINTS) {
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 14000);
+    const timer = setTimeout(() => ctrl.abort(), 28000);
     try {
       const res = await fetch(url, {
         method: 'POST',

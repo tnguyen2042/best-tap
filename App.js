@@ -39,7 +39,8 @@ import {
 import { classify, findNearby, formatDistance } from './src/places';
 
 const STORAGE_KEY = 'besttap.wallet.v1';
-const RADIUS_METERS = 400;
+const RADIUS_MILES = 2;
+const RADIUS_METERS = Math.round(RADIUS_MILES * 1609.34);
 const BY_ID = Object.fromEntries(catalog.cards.map((c) => [c.id, c]));
 const ISSUER_HUE = {
   Chase: 220, Citi: 205, 'American Express': 185, 'Capital One': 355, Discover: 28,
@@ -201,7 +202,7 @@ function NearbyTab({ wallet, s, t, insets, onGoWallet }) {
       }
       const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
       const items = await findNearby(pos.coords.latitude, pos.coords.longitude, RADIUS_METERS);
-      setPlaces({ status: 'ready', items, message: items.length ? '' : 'No named stores within ' + RADIUS_METERS + ' m. Pull down to retry or type a store.' });
+      setPlaces({ status: 'ready', items, message: items.length ? '' : 'No named stores within ' + RADIUS_MILES + ' miles. Pull down to retry or type a store.' });
     } catch (e) {
       setPlaces({ status: 'error', items: [], message: 'Could not load nearby places. Pull down to retry, or type a store below.' });
     }
@@ -255,7 +256,7 @@ function NearbyTab({ wallet, s, t, insets, onGoWallet }) {
 
       <View style={s.spread}>
         <Text style={s.label}>Near you</Text>
-        {places.status === 'loading' ? <ActivityIndicator color={t.accent} /> : <Text style={s.small}>within {RADIUS_METERS} m</Text>}
+        {places.status === 'loading' ? <ActivityIndicator color={t.accent} /> : <Text style={s.small}>within {RADIUS_MILES} miles, nearest first</Text>}
       </View>
       {places.message ? <Text style={s.muted}>{places.message}</Text> : null}
 
