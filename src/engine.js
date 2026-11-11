@@ -38,6 +38,8 @@ export const MERCHANTS = {
   southwest: 'Southwest',
   aa: 'American Airlines',
   marriott: 'Marriott',
+  lyft: 'Lyft',
+  peloton: 'Peloton',
 };
 
 export const num = (n) => Number(Number(n).toFixed(2));

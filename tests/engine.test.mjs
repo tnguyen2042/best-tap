@@ -4,6 +4,8 @@ import { readFileSync } from 'node:fs';
 import { CATEGORIES, MERCHANTS, evaluate, rankWallet, newInstance, setSpent, highlights, quarterKey, activationUpside } from '../src/engine.js';
 import { classify, parseElements, formatDistance } from '../src/places.js';
 import { mapPlace, nearbyBody, textBody, loadPlaces, CHIPS } from '../src/google.js';
+import { emojiFor, CAT_EMOJI } from '../src/emoji.js';
+import { activeDeals, dealWhen } from '../src/deals.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/catalog.json', import.meta.url), 'utf8'));
 const byId = Object.fromEntries(catalog.cards.map((c) => [c.id, c]));
@@ -258,6 +260,60 @@ test('google places: loadPlaces sends the key, sorts by distance and surfaces AP
   try { await loadPlaces({ lat: 37, lon: -122, radius: 3219 }); } catch (e) { msg = e.message; }
   assert.equal(msg, 'API key not valid');
   delete process.env.EXPO_PUBLIC_GOOGLE_PLACES_KEY;
+});
+
+// ---- Emoji, deals, units, new merchants ----
+test('emoji: restaurants get creative tiles, other categories follow their category', () => {
+  assert.equal(emojiFor('Dunkin Donuts', 'dining'), '🍩');
+  assert.equal(emojiFor('Brooklyn Bagel Co', 'dining'), '🥯');
+  assert.equal(emojiFor('Pho 79', 'dining'), '🍜');
+  assert.equal(emojiFor('Tokyo Noodle House', 'dining'), '🍜');
+  assert.equal(emojiFor("Joe's Pizza", 'dining'), '🍕');
+  assert.equal(emojiFor('Blue Door', 'dining', ['coffee_shop']), '☕');
+  assert.equal(emojiFor('Corner Spot', 'dining'), '🍽️');
+  assert.equal(emojiFor('Shell', 'gas'), '⛽');
+  assert.equal(emojiFor('Tesla Supercharger', 'gas', ['electric_vehicle_charging_station']), '🔌');
+  assert.equal(emojiFor('Ace Hardware', 'home', ['hardware_store']), '🔨');
+  assert.equal(emojiFor('Ikea', 'home'), '🛋️');
+  assert.equal(CAT_EMOJI.groceries, '🛒');
+});
+test('deals: expired ones drop, labels read naturally', () => {
+  const card = { deals: [
+    { emoji: 'a', text: 'old', until: '2026-01-01' },
+    { emoji: 'b', text: 'soon', until: '2026-12-31' },
+    { emoji: 'c', text: 'later', until: '2027-09-30' },
+    { emoji: 'd', text: 'dash', until: '2029-12-31', tag: 'activate' },
+    { emoji: 'e', text: 'yearly', tag: 'every year' },
+  ] };
+  const now = new Date('2026-11-11T12:00:00');
+  const d = activeDeals(card, now);
+  assert.deepEqual(d.map((x) => x.text), ['soon', 'later', 'dash', 'yearly']);
+  assert.equal(dealWhen(d[0], now), '⏰ by Dec 31');
+  assert.equal(dealWhen(d[1], now), 'to Sep 30, 2027');
+  assert.equal(dealWhen(d[2], now), 'by Dec 31, 2029');
+  assert.equal(dealWhen(d[3], now), 'every year');
+  assert.deepEqual(activeDeals({}, now), []);
+});
+test('Sapphire: Lyft and Peloton earn 5x until they expire, then fall back', () => {
+  const inst = newInstance(byId['chase-sapphire-preferred']);
+  const card = byId['chase-sapphire-preferred'];
+  const before = evaluate(card, inst, { cat: 'transit', merchant: 'lyft' }, 100, new Date('2027-06-01T12:00:00'));
+  assert.equal(before.eff, 5);
+  const after = evaluate(card, inst, { cat: 'transit', merchant: 'lyft' }, 100, new Date('2027-11-01T12:00:00'));
+  assert.equal(after.eff, 2);
+  const peloton = evaluate(card, inst, { cat: 'general', merchant: 'peloton' }, 100, new Date('2027-06-01T12:00:00'));
+  assert.equal(peloton.eff, 5);
+});
+test('distance formatting supports kilometers', () => {
+  assert.equal(formatDistance(80, 'km'), '80 m');
+  assert.equal(formatDistance(1609, 'km'), '1.6 km');
+  assert.match(formatDistance(1609, 'mi'), /mi/);
+});
+test('catalog deals are well formed and merchants referenced exist', () => {
+  for (const c of catalog.cards) {
+    for (const d of c.deals || []) assert.ok(d.emoji && d.text, c.id + ' deal needs emoji and text');
+    for (const r of c.rules) if (r.merchant) assert.ok(MERCHANTS[r.merchant], c.id + ' unknown merchant ' + r.merchant);
+  }
 });
 
 await Promise.all(pending);

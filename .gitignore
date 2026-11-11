@@ -2,3 +2,5 @@ node_modules/
 .expo/
 dist/
 .env
+assets/cards/*
+!assets/cards/.gitkeep

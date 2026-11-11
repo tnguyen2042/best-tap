@@ -68,11 +68,35 @@ Checks every card in the catalog against the engine's vocabulary, then the ranki
 
 | Path | What it is |
 | --- | --- |
-| `App.js` | The two screens (Nearby, Wallet) and the card picker |
+| `App.js` | The three tabs (Nearby, Wallet, Settings), the card picker and the light/dark/system theme |
 | `src/catalog.json` | The card catalog: rates, caps, fees, notes and sources, with a last-checked date |
 | `src/engine.js` | Ranking logic, no device dependencies |
+| `src/emoji.js` | Emoji for each place and category (donut, bagel, noodles, coffee and so on) |
+| `src/deals.js` | Filters expired card deals and formats their dates |
+| `src/cardArt.js` | Map of card id to card image (empty in the repo, see below) |
 | `src/places.js` | OpenStreetMap lookup and merchant/category detection |
 | `tests/engine.test.mjs` | Catalog validation and ranking tests |
+
+## Card images
+
+Card art is trademarked, so images are not committed (`assets/cards/` is in `.gitignore`). To show a card image in Wallet:
+
+1. Save the image as `assets/cards/<card id>.png`, for example `assets/cards/chase-sapphire-preferred.png` (about 720 x 480 works well).
+2. Add one line to `src/cardArt.js`:
+
+```js
+export const CARD_IMAGES = {
+  'chase-sapphire-preferred': require('../assets/cards/chase-sapphire-preferred.png'),
+};
+```
+
+Cards without an image show a colored tile with the issuer and card name.
+
+## Settings and deals
+
+- Settings (theme, radius, units, default amount, alert toggles) are saved on the phone under `besttap.settings.v1`. The alert toggles are stored but send nothing until notifications are built.
+- The "Coming at launch" rows (account and sync, Best Tap Plus, feedback, privacy policy and terms) are placeholders to replace when the app is deployed.
+- Each card in `catalog.json` can list `deals`: `{ "emoji", "text", "until": "YYYY-MM-DD", "tag" }`. Expired deals disappear on their own. Use `"tag": "activate"` for offers that need a sign-up.
 
 ## Keeping the catalog current
 

@@ -196,7 +196,8 @@
       ],
       "verified": [
         "chase-ff"
-      ]
+      ],
+      "deals": []
     },
     {
       "id": "synchrony-premier-world-mastercard",
@@ -620,9 +621,19 @@
         {
           "cat": "transit",
           "rate": 2
+        },
+        {
+          "merchant": "lyft",
+          "rate": 5,
+          "until": "2027-09-30"
+        },
+        {
+          "merchant": "peloton",
+          "rate": 5,
+          "until": "2027-12-31"
         }
       ],
-      "notes": "Online groceries exclude Walmart, Target and warehouse clubs. 1 cent per point is the cash value. Chase Travel redemptions can be worth more, so raise the point value if you use them that way. Chase also lists 3x at vacation-home brands like Airbnb and Vrbo, plus time-limited Peloton and Lyft offers, which the app does not model.",
+      "notes": "Online groceries exclude Walmart, Target and warehouse clubs. 1 cent per point is the cash value. Chase Travel redemptions can be worth more, so raise the point value if you use them that way. Chase also lists 3x at vacation-home brands like Airbnb and Vrbo, which the app does not model. Lyft 5x runs to Sep 30, 2027. Peloton 5x applies to purchases over $150, up to 25,000 points, to Dec 31, 2027.",
       "src": [
         "nw-csp",
         "omaat-csp",
@@ -632,6 +643,35 @@
       ],
       "verified": [
         "chase-sp"
+      ],
+      "deals": [
+        {
+          "emoji": "📺",
+          "text": "Apple TV+ free for 1 year",
+          "until": "2026-12-31",
+          "tag": "activate"
+        },
+        {
+          "emoji": "🚗",
+          "text": "5x points on Lyft rides",
+          "until": "2027-09-30"
+        },
+        {
+          "emoji": "🚴",
+          "text": "5x on Peloton over $150",
+          "until": "2027-12-31"
+        },
+        {
+          "emoji": "🛵",
+          "text": "DashPass free, up to $10 off monthly",
+          "until": "2029-12-31",
+          "tag": "activate"
+        },
+        {
+          "emoji": "🏨",
+          "text": "$100 hotel credit via Chase Travel",
+          "tag": "every year"
+        }
       ]
     },
     {
@@ -1143,7 +1183,8 @@
       ],
       "verified": [
         "citi-costco"
-      ]
+      ],
+      "deals": []
     },
     {
       "id": "sams-club-mastercard",

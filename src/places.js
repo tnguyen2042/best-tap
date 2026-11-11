@@ -1,4 +1,5 @@
 // Nearby places from OpenStreetMap (free, no key) plus merchant and category detection.
+import { emojiFor } from './emoji';
 
 // [name pattern, category, merchant key, optional note]
 const BRANDS = [
@@ -16,6 +17,7 @@ const BRANDS = [
   [/united airlines|united\.com/i, 'flights', 'united'],
   [/southwest/i, 'flights', 'southwest'],
   [/american airlines/i, 'flights', 'aa'],
+  [/peloton/i, 'general', 'peloton'],
   [/marriott|bonvoy|courtyard by|sheraton|westin|residence inn|fairfield inn|springhill suites|ritz-?carlton/i, 'hotels', 'marriott'],
   [/verizon/i, 'phone', 'verizon'],
   [/t-?mobile/i, 'phone', 'tmobile'],
@@ -76,7 +78,8 @@ export function distanceMeters(lat1, lon1, lat2, lon2) {
   return 2 * R * Math.asin(Math.sqrt(a));
 }
 
-export function formatDistance(m) {
+export function formatDistance(m, units = 'mi') {
+  if (units === 'km') return m < 160 ? Math.max(10, Math.round(m / 10) * 10) + ' m' : (m / 1000).toFixed(1) + ' km';
   if (m < 160) return Math.max(10, Math.round((m * 3.281) / 10) * 10) + ' ft';
   return (m / 1609.34).toFixed(1) + ' mi';
 }
@@ -102,7 +105,8 @@ export function parseElements(elements, lat, lon) {
     const c = classify(tags.name, tags);
     const dist = distanceMeters(lat, lon, plat, plon);
     const key = tags.name.toLowerCase() + '|' + c.cat;
-    const place = { id: String(el.type) + el.id, name: tags.name, cat: c.cat, merchant: c.merchant, note: c.note, dist };
+    const emoji = emojiFor(tags.name + ' ' + (tags.cuisine || ''), c.cat, [tags.amenity, tags.shop].filter(Boolean));
+    const place = { id: String(el.type) + el.id, name: tags.name, cat: c.cat, merchant: c.merchant, note: c.note, emoji, dist };
     if (!seen.has(key) || seen.get(key).dist > dist) seen.set(key, place);
   }
   return Array.from(seen.values()).sort((a, b) => a.dist - b.dist).slice(0, 40);

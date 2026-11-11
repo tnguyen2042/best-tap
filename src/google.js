@@ -1,5 +1,6 @@
 // Google Places API (New) search, with OpenStreetMap as the fallback when no key is set.
 import { classify, distanceMeters, findNearby } from './places';
+import { emojiFor } from './emoji';
 
 const BASE = 'https://places.googleapis.com/v1/places';
 const FIELDS = 'places.id,places.displayName,places.location,places.primaryType,places.types';
@@ -9,17 +10,17 @@ export const hasGoogleKey = () => !!getKey();
 
 // Chip id, label, Google place types (Table A) to search for.
 export const CHIPS = [
-  { id: 'all', label: 'All', types: null },
-  { id: 'dining', label: 'Restaurants', types: ['restaurant', 'fast_food_restaurant'] },
-  { id: 'coffee', label: 'Coffee', types: ['coffee_shop', 'cafe'] },
-  { id: 'gas', label: 'Gas & EV', types: ['gas_station', 'electric_vehicle_charging_station'] },
-  { id: 'groceries', label: 'Groceries', types: ['supermarket', 'grocery_store'] },
-  { id: 'wholesale', label: 'Warehouse', types: ['warehouse_store'] },
-  { id: 'drugstore', label: 'Drugstores', types: ['pharmacy', 'drugstore'] },
-  { id: 'shopping', label: 'Shopping', types: ['department_store', 'shopping_mall', 'electronics_store', 'clothing_store', 'discount_store'] },
-  { id: 'home', label: 'Home', types: ['home_improvement_store', 'hardware_store'] },
-  { id: 'hotels', label: 'Hotels', types: ['hotel', 'lodging'] },
-  { id: 'entertainment', label: 'Entertainment', types: ['movie_theater', 'amusement_park'] },
+  { id: 'all', emoji: '✨', label: 'All', types: null },
+  { id: 'dining', emoji: '🍕', label: 'Restaurants', types: ['restaurant', 'fast_food_restaurant'] },
+  { id: 'coffee', emoji: '☕', label: 'Coffee', types: ['coffee_shop', 'cafe'] },
+  { id: 'gas', emoji: '⛽', label: 'Gas & EV', types: ['gas_station', 'electric_vehicle_charging_station'] },
+  { id: 'groceries', emoji: '🛒', label: 'Groceries', types: ['supermarket', 'grocery_store'] },
+  { id: 'wholesale', emoji: '📦', label: 'Warehouse', types: ['warehouse_store'] },
+  { id: 'drugstore', emoji: '💊', label: 'Drugstores', types: ['pharmacy', 'drugstore'] },
+  { id: 'shopping', emoji: '🛍️', label: 'Shopping', types: ['department_store', 'shopping_mall', 'electronics_store', 'clothing_store', 'discount_store'] },
+  { id: 'home', emoji: '🛋️', label: 'Home', types: ['home_improvement_store', 'hardware_store'] },
+  { id: 'hotels', emoji: '🏨', label: 'Hotels', types: ['hotel', 'lodging'] },
+  { id: 'entertainment', emoji: '🎬', label: 'Entertainment', types: ['movie_theater', 'amusement_park'] },
 ];
 const ALL_TYPES = Array.from(new Set(CHIPS.flatMap((c) => c.types || [])));
 
@@ -55,7 +56,7 @@ export function mapPlace(g, lat, lon) {
   if (merchant && brand.known && !typeCategory(types)) cat = brand.cat;
   const loc = g.location || {};
   const dist = loc.latitude != null ? distanceMeters(lat, lon, loc.latitude, loc.longitude) : 0;
-  return { id: g.id, name, cat, merchant, note: brand.note || '', dist };
+  return { id: g.id, name, cat, merchant, note: brand.note || '', emoji: emojiFor(name, cat, types), dist };
 }
 
 async function call(endpoint, body) {
