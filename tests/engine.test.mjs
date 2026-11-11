@@ -3,12 +3,18 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { CATEGORIES, MERCHANTS, evaluate, rankWallet, newInstance, setSpent, highlights, quarterKey, activationUpside } from '../src/engine.js';
 import { classify, parseElements, formatDistance } from '../src/places.js';
+import { mapPlace, nearbyBody, textBody, loadPlaces, CHIPS } from '../src/google.js';
 
 const catalog = JSON.parse(readFileSync(new URL('../src/catalog.json', import.meta.url), 'utf8'));
 const byId = Object.fromEntries(catalog.cards.map((c) => [c.id, c]));
 const NOW = new Date('2026-11-10T12:00:00');
 let passed = 0;
-const test = (name, fn) => { fn(); passed++; console.log('ok  ' + name); };
+const pending = [];
+const test = (name, fn) => {
+  const r = fn();
+  const done = () => { passed++; console.log('ok  ' + name); };
+  if (r && r.then) pending.push(r.then(done)); else done();
+};
 
 // ---- Catalog integrity ----
 test('catalog ids are unique and cards are well formed', () => {
@@ -210,4 +216,49 @@ test('overpass elements parse, dedupe and sort by distance', () => {
   assert.match(formatDistance(800), /mi$/);
 });
 
+const G = (name, types, primaryType) => ({ id: name, displayName: { text: name }, types, primaryType, location: { latitude: 37.001, longitude: -122 } });
+test('google places: types map to spending categories and brands override', () => {
+  assert.equal(mapPlace(G('Joe Pizza', ['restaurant']), 37, -122).cat, 'dining');
+  assert.equal(mapPlace(G('Shell', ['gas_station', 'convenience_store']), 37, -122).cat, 'gas');
+  assert.equal(mapPlace(G('Safeway', ['supermarket']), 37, -122).cat, 'groceries');
+  const costco = mapPlace(G('Costco Wholesale', ['warehouse_store']), 37, -122);
+  assert.equal(costco.merchant, 'costco');
+  assert.equal(costco.cat, 'wholesale');
+  const cgas = mapPlace(G('Costco Gasoline', ['gas_station']), 37, -122);
+  assert.equal(cgas.merchant, 'costco_gas');
+  assert.equal(cgas.cat, 'gas');
+  assert.ok(mapPlace(G('Joe Pizza', ['restaurant']), 37, -122).dist > 100);
+});
+test('google places: request bodies and chips', () => {
+  const b = nearbyBody(37, -122, 3219, ['gas_station']);
+  assert.equal(b.rankPreference, 'DISTANCE');
+  assert.equal(b.locationRestriction.circle.radius, 3219);
+  assert.ok(b.maxResultCount <= 20);
+  assert.equal(textBody(37, -122, 3219, 'sushi').textQuery, 'sushi');
+  assert.ok(CHIPS.every((c) => c.id && c.label));
+});
+test('google places: loadPlaces sends the key, sorts by distance and surfaces API errors', async () => {
+  process.env.EXPO_PUBLIC_GOOGLE_PLACES_KEY = 'test-key';
+  const calls = [];
+  globalThis.fetch = async (url, init) => {
+    calls.push({ url, init });
+    return { ok: true, json: async () => ({ places: [
+      { ...G('Far Cafe', ['cafe']), location: { latitude: 37.02, longitude: -122 } },
+      G('Near Cafe', ['cafe']),
+    ] }) };
+  };
+  const out = await loadPlaces({ lat: 37, lon: -122, radius: 3219, chip: 'coffee' });
+  assert.equal(out[0].name, 'Near Cafe');
+  assert.match(calls[0].url, /places:searchNearby$/);
+  assert.equal(calls[0].init.headers['X-Goog-Api-Key'], 'test-key');
+  await loadPlaces({ lat: 37, lon: -122, radius: 3219, query: 'sushi' });
+  assert.match(calls[1].url, /places:searchText$/);
+  globalThis.fetch = async () => ({ ok: false, status: 403, json: async () => ({ error: { message: 'API key not valid' } }) });
+  let msg = '';
+  try { await loadPlaces({ lat: 37, lon: -122, radius: 3219 }); } catch (e) { msg = e.message; }
+  assert.equal(msg, 'API key not valid');
+  delete process.env.EXPO_PUBLIC_GOOGLE_PLACES_KEY;
+});
+
+await Promise.all(pending);
 console.log('\n' + passed + ' tests passed, ' + catalog.cards.length + ' cards validated');

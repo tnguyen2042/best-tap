@@ -45,6 +45,17 @@ Add this to `app.json` so the location prompt has a message:
 "plugins": [["expo-location", { "locationWhenInUsePermission": "Best Tap uses your location to find stores near you and suggest the best card to use." }]]
 ```
 
+## Places search (Google Places, optional)
+
+The Nearby tab is a Yelp-style list: category chips, a search box, and a list sorted by distance (or best cash back). With a Google key it uses Google Places API (New). Without one it falls back to OpenStreetMap, which is free but slower and patchier.
+
+1. In console.cloud.google.com, create a project, turn on billing, and enable **Places API (New)**.
+2. Under Credentials, create an API key. **Restrict it to Places API (New) only**, and set a low daily quota for that API so a leaked key cannot run up charges.
+3. In the project folder, copy `.env.example` to `.env` and paste the key after the `=`. `.env` is git-ignored, so it is never committed.
+4. Restart with `npx expo start --go -c`.
+
+The key ships inside the app, so keep this for personal testing. Before sharing the app with others, move the calls behind a small server that holds the key.
+
 ## Tests
 
 ```bash

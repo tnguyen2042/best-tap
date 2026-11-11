@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -36,7 +36,8 @@ import {
   setSpent,
   spentFor,
 } from './src/engine';
-import { classify, findNearby, formatDistance } from './src/places';
+import { classify, formatDistance } from './src/places';
+import { CHIPS, hasGoogleKey, loadPlaces } from './src/google';
 
 const STORAGE_KEY = 'besttap.wallet.v1';
 const RADIUS_MILES = 2;
@@ -185,41 +186,51 @@ function RankList({ rows, upside, s, per100 }) {
 function NearbyTab({ wallet, s, t, insets, onGoWallet }) {
   const [amountText, setAmountText] = useState('50');
   const [query, setQuery] = useState('');
+  const [submitted, setSubmitted] = useState('');
+  const [chip, setChip] = useState('all');
+  const [sort, setSort] = useState('distance');
   const [places, setPlaces] = useState({ status: 'loading', items: [], message: '' });
   const [openId, setOpenId] = useState(null);
+  const posRef = useRef(null);
 
   const amount = parseFloat(amountText);
   const per100 = !(amount > 0);
   const amt = per100 ? 100 : amount;
 
-  const load = useCallback(async () => {
+  const run = useCallback(async (chipId, text, fresh) => {
     setPlaces((p) => ({ ...p, status: 'loading', message: '' }));
     try {
-      const perm = await Location.requestForegroundPermissionsAsync();
-      if (perm.status !== 'granted') {
-        setPlaces({ status: 'denied', items: [], message: 'Location is off. Allow it in Settings, or type a store below.' });
-        return;
+      if (fresh || !posRef.current) {
+        const perm = await Location.requestForegroundPermissionsAsync();
+        if (perm.status !== 'granted') {
+          setPlaces({ status: 'denied', items: [], message: 'Location is off. Allow it in Settings to see places near you.' });
+          return;
+        }
+        const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
+        posRef.current = pos.coords;
       }
-      const pos = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Balanced });
-      const items = await findNearby(pos.coords.latitude, pos.coords.longitude, RADIUS_METERS);
-      setPlaces({ status: 'ready', items, message: items.length ? '' : 'No named stores within ' + RADIUS_MILES + ' miles. Pull down to retry or type a store.' });
+      const { latitude, longitude } = posRef.current;
+      const items = await loadPlaces({ lat: latitude, lon: longitude, radius: RADIUS_METERS, chip: chipId, query: text });
+      setPlaces({ status: 'ready', items, message: items.length ? '' : 'No places found within ' + RADIUS_MILES + ' miles. Try another category or search.' });
     } catch (e) {
-      setPlaces({ status: 'error', items: [], message: 'Could not load nearby places. Pull down to retry, or type a store below.' });
+      setPlaces({ status: 'error', items: [], message: 'Could not load places: ' + ((e && e.message) || 'unknown error') });
     }
   }, []);
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { run(chip, submitted, false); }, [chip, submitted, run]);
 
-  const manual = query.trim() ? classify(query.trim()) : null;
+  const placeRows = useMemo(() => {
+    const rows = places.items.map((p) => ({ p, rows: wallet.length ? rankWallet(wallet, BY_ID, { cat: p.cat, merchant: p.merchant }, amt) : [] }));
+    if (sort === 'cash') rows.sort((a, b) => (b.rows[0] ? b.rows[0].e.cash : 0) - (a.rows[0] ? a.rows[0].e.cash : 0) || a.p.dist - b.p.dist);
+    return rows;
+  }, [places.items, wallet, amt, sort]);
+
+  const manual = !hasGoogleKey() && query.trim() ? classify(query.trim()) : null;
   const manualRows = manual && wallet.length ? rankWallet(wallet, BY_ID, manual, amt) : [];
-  const placeRows = useMemo(
-    () => places.items.map((p) => ({ p, rows: wallet.length ? rankWallet(wallet, BY_ID, { cat: p.cat, merchant: p.merchant }, amt) : [] })),
-    [places.items, wallet, amt]
-  );
 
   return (
     <ScrollView
       contentContainerStyle={s.body}
-      refreshControl={<RefreshControl refreshing={places.status === 'loading'} onRefresh={load} tintColor={t.accent} />}
+      refreshControl={<RefreshControl refreshing={places.status === 'loading'} onRefresh={() => run(chip, submitted, true)} tintColor={t.accent} />}
       keyboardShouldPersistTaps="handled"
     >
       {!wallet.length ? (
@@ -237,12 +248,21 @@ function NearbyTab({ wallet, s, t, insets, onGoWallet }) {
         </View>
         <TextInput
           style={s.input}
-          placeholder="Or type a store, like Costco Gas"
+          placeholder={hasGoogleKey() ? 'Search places, like Costco or sushi' : 'Or type a store, like Costco Gas'}
           placeholderTextColor={t.muted}
           value={query}
-          onChangeText={setQuery}
+          onChangeText={(v) => { setQuery(v); if (!v.trim() && submitted) setSubmitted(''); }}
+          onSubmitEditing={() => hasGoogleKey() && setSubmitted(query.trim())}
+          returnKeyType="search"
           autoCapitalize="words"
         />
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} keyboardShouldPersistTaps="handled">
+          <View style={[s.row, { gap: 6 }]}>
+            {CHIPS.map((c) => (
+              <Chip key={c.id} label={c.label} on={chip === c.id} onPress={() => { setChip(c.id); setQuery(''); setSubmitted(''); }} s={s} />
+            ))}
+          </View>
+        </ScrollView>
         {manual ? (
           <View>
             <Text style={s.muted}>
@@ -255,8 +275,12 @@ function NearbyTab({ wallet, s, t, insets, onGoWallet }) {
       </View>
 
       <View style={s.spread}>
-        <Text style={s.label}>Near you</Text>
-        {places.status === 'loading' ? <ActivityIndicator color={t.accent} /> : <Text style={s.small}>within {RADIUS_MILES} miles, nearest first</Text>}
+        <Text style={s.label}>{submitted ? 'Results for "' + submitted + '"' : 'Near you'}</Text>
+        {places.status === 'loading' ? <ActivityIndicator color={t.accent} /> : <Text style={s.small}>within {RADIUS_MILES} miles{hasGoogleKey() ? '' : ' · OpenStreetMap'}</Text>}
+      </View>
+      <View style={[s.row, { gap: 6 }]}>
+        <Chip label="Nearest" on={sort === 'distance'} onPress={() => setSort('distance')} s={s} />
+        <Chip label="Best cash back" on={sort === 'cash'} onPress={() => setSort('cash')} s={s} />
       </View>
       {places.message ? <Text style={s.muted}>{places.message}</Text> : null}
 
