@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-13",
   "note": "Rates come from public card reviews and issuer announcements checked in November 2026. Points cards use a conservative default value of 1 cent per point unless a source stated otherwise. Confirm terms with the issuer.",
   "sources": {
     "mr-cash": {
@@ -301,6 +301,11 @@
         {
           "cat": "drugstore",
           "rate": 3
+        },
+        {
+          "merchant": "lyft",
+          "rate": 2,
+          "until": "2027-09-30"
         }
       ],
       "pools": {
@@ -313,9 +318,13 @@
         "2026Q4": [
           "groceries",
           "dining"
+        ],
+        "2027Q1": [
+          "groceries",
+          "streaming"
         ]
       },
-      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%.",
+      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%. Q1 2027 rotating 5%: grocery stores (not Walmart or Target) and top streaming services; activation opens Dec 15, 2026. Lyft earns 2% through Sep 30, 2027. No foreign transaction fee.",
       "src": [
         "mr-cash",
         "nw-cash",
@@ -325,6 +334,19 @@
       ],
       "verified": [
         "chase-ff"
+      ],
+      "deals": [
+        {
+          "emoji": "🚗",
+          "text": "2% on Lyft rides",
+          "until": "2027-09-30"
+        },
+        {
+          "emoji": "🛒",
+          "text": "Q1 2027 5%: grocery + streaming, activate from Dec 15",
+          "until": "2027-03-31",
+          "tag": "activate"
+        }
       ]
     },
     {
@@ -449,6 +471,13 @@
       ],
       "verified": [
         "amex-bcp"
+      ],
+      "deals": [
+        {
+          "emoji": "🏰",
+          "text": "$120 Disney+/Hulu/ESPN+ credit ($10 a month)",
+          "tag": "activate"
+        }
       ]
     },
     {
@@ -671,6 +700,11 @@
           "emoji": "🏨",
           "text": "$100 hotel credit via Chase Travel",
           "tag": "every year"
+        },
+        {
+          "emoji": "🛂",
+          "text": "Up to $120 Global Entry/TSA PreCheck credit",
+          "tag": "every 4 years"
         }
       ]
     },
