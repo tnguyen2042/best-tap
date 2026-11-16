@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-16",
   "note": "Rates come from public card reviews and issuer announcements checked in November 2026. Points cards use a conservative default value of 1 cent per point unless a source stated otherwise. Confirm terms with the issuer.",
   "sources": {
     "mr-cash": {
@@ -105,6 +105,10 @@
     "ck-cash": {
       "title": "Credit Karma: Best cash back cards",
       "url": "https://www.creditkarma.com/credit-cards/cash-back-cards"
+    },
+    "chase-q1-27": {
+      "title": "Chase: Freedom Flex more travel value, Q1 2027 categories",
+      "url": "https://media.chase.com/news/chase-freedom-flex-more-travel-value"
     }
   },
   "cards": [
@@ -313,15 +317,20 @@
         "2026Q4": [
           "groceries",
           "dining"
+        ],
+        "2027Q1": [
+          "groceries",
+          "streaming"
         ]
       },
-      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%.",
+      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%. Q1 2027 rotating 5% (Chase): grocery stores (not Walmart or Target) and streaming; activate each quarter. Freedom Flex no longer charges foreign transaction fees (Chase).",
       "src": [
         "mr-cash",
         "nw-cash",
         "nw-rewards",
         "chase-q4",
-        "chase-ff"
+        "chase-ff",
+        "chase-q1-27"
       ],
       "verified": [
         "chase-ff"
