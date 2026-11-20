@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-20",
   "note": "Rates come from public card reviews and issuer announcements checked in November 2026. Points cards use a conservative default value of 1 cent per point unless a source stated otherwise. Confirm terms with the issuer.",
   "sources": {
     "mr-cash": {
@@ -313,9 +313,13 @@
         "2026Q4": [
           "groceries",
           "dining"
+        ],
+        "2027Q1": [
+          "groceries",
+          "streaming"
         ]
       },
-      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%.",
+      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%. Chase lists Q1 2027 5% categories (grocery stores excl. Walmart/Target, top streaming) on its Freedom Flex page, activation available 12/15/2026.",
       "src": [
         "mr-cash",
         "nw-cash",
@@ -671,6 +675,11 @@
           "emoji": "🏨",
           "text": "$100 hotel credit via Chase Travel",
           "tag": "every year"
+        },
+        {
+          "emoji": "🛂",
+          "text": "Up to $120 back for Global Entry / TSA PreCheck / NEXUS",
+          "tag": "every 4 years"
         }
       ]
     },
