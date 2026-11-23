@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-23",
   "note": "Rates come from public card reviews and issuer announcements checked in November 2026. Points cards use a conservative default value of 1 cent per point unless a source stated otherwise. Confirm terms with the issuer.",
   "sources": {
     "mr-cash": {
@@ -313,9 +313,13 @@
         "2026Q4": [
           "groceries",
           "dining"
+        ],
+        "2027Q1": [
+          "groceries",
+          "streaming"
         ]
       },
-      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%.",
+      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%. Q1 2027 rotating 5% (Jan-Mar): grocery stores (not Walmart or Target) and top streaming services, activation opens Dec 15, 2026. Chase lists the 5% cap as $1,500 per quarter.",
       "src": [
         "mr-cash",
         "nw-cash",
@@ -633,7 +637,7 @@
           "until": "2027-12-31"
         }
       ],
-      "notes": "Online groceries exclude Walmart, Target and warehouse clubs. 1 cent per point is the cash value. Chase Travel redemptions can be worth more, so raise the point value if you use them that way. Chase also lists 3x at vacation-home brands like Airbnb and Vrbo, which the app does not model. Lyft 5x runs to Sep 30, 2027. Peloton 5x applies to purchases over $150, up to 25,000 points, to Dec 31, 2027.",
+      "notes": "Online groceries exclude Walmart, Target and warehouse clubs. 1 cent per point is the cash value. Chase Travel redemptions can be worth more, so raise the point value if you use them that way. Chase also lists 3x at vacation-home brands like Airbnb and Vrbo, which the app does not model. Lyft 5x runs to Sep 30, 2027. Peloton 5x applies to purchases over $150, up to 25,000 points, to Dec 31, 2027. Chase also lists up to $120 back every four years for Global Entry, TSA PreCheck or NEXUS, and 4:3 Hyatt transfers.",
       "src": [
         "nw-csp",
         "omaat-csp",
@@ -647,7 +651,7 @@
       "deals": [
         {
           "emoji": "📺",
-          "text": "Apple TV+ free for 1 year",
+          "text": "Apple TV free for 1 year",
           "until": "2026-12-31",
           "tag": "activate"
         },
@@ -671,6 +675,11 @@
           "emoji": "🏨",
           "text": "$100 hotel credit via Chase Travel",
           "tag": "every year"
+        },
+        {
+          "emoji": "🛂",
+          "text": "Up to $120 back for Global Entry, TSA PreCheck or NEXUS",
+          "tag": "every 4 years"
         }
       ]
     },
