@@ -150,7 +150,11 @@ test('rotating 5% needs activation, then applies to this quarter only', () => {
   assert.ok(e.inactive);
   e = evaluate(flex, { ...inst, activated: true }, { cat: 'groceries', merchant: null }, 100, NOW);
   close(e.cash, 5);
+  e = evaluate(flex, { ...inst, activated: true }, { cat: 'dining', merchant: null }, 100, new Date('2027-02-10T12:00:00'));
+  close(e.cash, 3);
   e = evaluate(flex, { ...inst, activated: true }, { cat: 'groceries', merchant: null }, 100, new Date('2027-02-10T12:00:00'));
+  close(e.cash, 5);
+  e = evaluate(flex, { ...inst, activated: true }, { cat: 'gas', merchant: null }, 100, new Date('2027-05-10T12:00:00'));
   close(e.cash, 1);
 });
 test('activation upside is reported when an inactive card would win', () => {
