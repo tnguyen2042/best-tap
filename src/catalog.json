@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-11",
+  "updated": "2026-11-26",
   "note": "Rates come from public card reviews and issuer announcements checked in November 2026. Points cards use a conservative default value of 1 cent per point unless a source stated otherwise. Confirm terms with the issuer.",
   "sources": {
     "mr-cash": {
@@ -105,6 +105,14 @@
     "ck-cash": {
       "title": "Credit Karma: Best cash back cards",
       "url": "https://www.creditkarma.com/credit-cards/cash-back-cards"
+    },
+    "chase-ff-page": {
+      "title": "Chase: Freedom Flex card page (official)",
+      "url": "https://creditcards.chase.com/cash-back-credit-cards/freedom/flex"
+    },
+    "amex-bc-compare": {
+      "title": "American Express: Blue Cash Preferred vs. Everyday (official)",
+      "url": "https://www.americanexpress.com/en-us/credit-cards/credit-intel/blue-cash-preferred-vs-blue-cash-everyday/"
     }
   },
   "cards": [
@@ -301,6 +309,11 @@
         {
           "cat": "drugstore",
           "rate": 3
+        },
+        {
+          "merchant": "lyft",
+          "rate": 2,
+          "until": "2027-09-30"
         }
       ],
       "pools": {
@@ -313,18 +326,42 @@
         "2026Q4": [
           "groceries",
           "dining"
+        ],
+        "2027Q1": [
+          "groceries",
+          "streaming"
         ]
       },
-      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%.",
+      "notes": "Q4 2026 rotating 5%: grocery stores (not Walmart, Target or warehouse clubs) and dining. Activate by Dec 14, 2026 at ChaseBonus.com. Chase says dining can stack higher this quarter; the app uses 5%. Q1 2027 rotating 5%: grocery stores (not Walmart or Target) and top streaming services; activation opens Dec 15, 2026. Lyft earns 2% through Sep 30, 2027. No foreign transaction fee.",
       "src": [
         "mr-cash",
         "nw-cash",
         "nw-rewards",
         "chase-q4",
-        "chase-ff"
+        "chase-ff",
+        "chase-ff-page"
       ],
       "verified": [
-        "chase-ff"
+        "chase-ff",
+        "chase-ff-page"
+      ],
+      "deals": [
+        {
+          "emoji": "🚗",
+          "text": "2% on Lyft rides",
+          "until": "2027-09-30"
+        },
+        {
+          "emoji": "🛵",
+          "text": "6 months of DashPass free",
+          "until": "2029-12-31",
+          "tag": "activate"
+        },
+        {
+          "emoji": "🛍️",
+          "text": "Up to $10 off non-restaurant DoorDash orders each quarter",
+          "until": "2029-12-31"
+        }
       ]
     },
     {
@@ -438,17 +475,25 @@
           "period": "year"
         }
       },
-      "notes": "$0 annual fee the first year, then $95. 6% at U.S. supermarkets up to $6,000 a year, then 1%. 6% on select U.S. streaming, 3% on transit and U.S. gas stations (confirmed by American Express).",
+      "notes": "$0 annual fee the first year, then $95. 6% at U.S. supermarkets up to $6,000 a year, then 1%. 6% on select U.S. streaming, 3% on transit and U.S. gas stations (confirmed by American Express). Up to $120 a year in Disney streaming credits ($10 a month); terms apply.",
       "src": [
         "mr-cash",
         "mr-groc",
         "nw-cash",
         "nw-rewards",
         "amex-bcp",
-        "ck-cash"
+        "ck-cash",
+        "amex-bc-compare"
       ],
       "verified": [
-        "amex-bcp"
+        "amex-bcp",
+        "amex-bc-compare"
+      ],
+      "deals": [
+        {
+          "emoji": "🏰",
+          "text": "Up to $120 Disney streaming credit ($10 a month)"
+        }
       ]
     },
     {
@@ -489,15 +534,23 @@
           "period": "year"
         }
       },
-      "notes": "3% at U.S. supermarkets, gas stations and U.S. online retail, each up to $6,000 a year.",
+      "notes": "3% at U.S. supermarkets, gas stations and U.S. online retail, each up to $6,000 a year. Up to $84 a year in Disney streaming credits ($7 a month); terms apply.",
       "src": [
         "mr-groc",
         "nw-cash",
         "cc-gen",
-        "amex-bce"
+        "amex-bce",
+        "amex-bc-compare"
       ],
       "verified": [
-        "amex-bce"
+        "amex-bce",
+        "amex-bc-compare"
+      ],
+      "deals": [
+        {
+          "emoji": "🏰",
+          "text": "Up to $84 Disney streaming credit ($7 a month)"
+        }
       ]
     },
     {
